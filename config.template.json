@@ -2,9 +2,9 @@
   "unsplash_api": {
     "access_key": "",
     "querys": [
-      ""
+      "space"
     ]
   },
-  "update_delay": 6,
-  "photo_directory": ""
+  "update_delay": 3600,
+  "photo_directory": "C://Photos"
 }

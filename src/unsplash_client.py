@@ -1,5 +1,3 @@
-import json
-
 import aiohttp
 from typing import Optional
 from src.configuration import UnsplashAPIConfigurationSection
