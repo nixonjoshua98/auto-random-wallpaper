@@ -1,0 +1,10 @@
+{
+  "unsplash_api": {
+    "access_key": "",
+    "querys": [
+      ""
+    ]
+  },
+  "update_delay": 6,
+  "photo_directory": ""
+}
