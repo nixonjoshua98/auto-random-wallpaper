@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pathlib import Path
 
 
 class UnsplashAPIConfigurationSection(BaseModel):
@@ -12,9 +13,9 @@ class Configuration(BaseModel):
     photo_directory: str
 
 
-def read_configuration(file_name: str = "config.json") -> Configuration:
+def read_configuration(file_path: Path) -> Configuration:
 
-    with open(file_name, "r") as fh:
+    with file_path.open("r") as fh:
         data = fh.read()
 
     return Configuration.parse_raw(data)

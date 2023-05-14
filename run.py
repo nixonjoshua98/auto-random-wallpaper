@@ -2,12 +2,16 @@ import asyncio
 import os.path
 import random
 import datetime as dt
+import os
+from pathlib import Path
 
 from src.configuration import read_configuration
 from src.unsplash_client import UnsplashClient
 from src import http_utility, wallpaper_utility
 
-config = read_configuration()
+config = read_configuration(
+    file_path=Path(__file__).with_name("config.json")
+)
 
 client = UnsplashClient(config.unsplash_api)
 
@@ -17,6 +21,8 @@ def _log(severity: str, msg: str):
 
 
 async def main():
+
+    _log("INF", "Running..")
 
     while True:
 
