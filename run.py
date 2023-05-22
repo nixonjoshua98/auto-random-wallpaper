@@ -17,7 +17,9 @@ client = UnsplashClient(config.unsplash_api)
 
 
 def _log(severity: str, msg: str):
-    print(f"[{severity}] [{dt.datetime.utcnow()}] {msg}")
+    now = dt.datetime.now().replace(microsecond=0)
+
+    print(f"[{severity}] [{now}] {msg}")
 
 
 async def main():
@@ -39,16 +41,16 @@ async def main():
             continue
 
         # Assume its a jpg..can we find the photo format?
-        file_path = os.path.join(config.photo_directory, f"{resp.id}.jpg")
+        if not os.path.isfile(path := os.path.join(config.photo_directory, f"{resp.id}.jpg")):
 
-        # Download and save the image - Returns whether it was successful
-        has_saved = await http_utility.download_image(resp.urls.regular, file_path)
+            # Download and save the image - Returns whether it was successful
+            has_saved = await http_utility.download_image(resp.urls.regular, path)
 
-        if not has_saved:
-            _log("ERR", "Failed to download image")
-            continue
+            if not has_saved:
+                _log("ERR", "Failed to download image")
+                continue
 
-        wallpaper_utility.set_wallpaper(file_path)
+        wallpaper_utility.set_wallpaper(path)
 
         _log("INF", "Updated wallpaper")
 
