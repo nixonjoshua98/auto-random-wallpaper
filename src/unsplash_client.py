@@ -1,7 +1,7 @@
 import aiohttp
 from typing import Optional
 from src.configuration import UnsplashAPIConfigurationSection
-from src.unsplash_random_photo_response import UnsplashRandomPhotoResponse
+from src.unsplash_responses import UnsplashRandomPhotoResponse
 import contextlib as cl
 
 
