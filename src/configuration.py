@@ -4,7 +4,7 @@ from pathlib import Path
 
 class UnsplashAPIConfigurationSection(BaseModel):
     access_key: str
-    querys: list[str]
+    topics: list[str]
 
 
 class Configuration(BaseModel):

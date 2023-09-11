@@ -22,7 +22,7 @@ async def _update_wallpaper() -> bool:
     # Fetch a landscape photo using a random query
     resp = await client.get_random_photo(
         orientation="landscape",
-        query=random.choice(config.unsplash_api.querys))
+        topic_names=config.unsplash_api.topics)
 
     # Assume its a jpg..can we find the photo format?
     if not os.path.isfile(path := os.path.join(config.photo_directory, f"{resp.id}.jpg")):

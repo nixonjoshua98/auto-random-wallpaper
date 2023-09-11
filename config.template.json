@@ -1,7 +1,7 @@
 {
   "unsplash_api": {
     "access_key": "",
-    "querys": [
+    "topics": [
       "space"
     ]
   },
