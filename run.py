@@ -17,7 +17,7 @@ config = read_configuration(
 client = UnsplashClient(config.unsplash_api)
 
 
-async def _process_unsplash() -> bool:
+async def _update_wallpaper() -> bool:
 
     # Fetch a landscape photo using a random query
     resp = await client.get_random_photo(
@@ -38,30 +38,8 @@ async def _process_unsplash() -> bool:
     return True
 
 
-def _update_with_existing_file() -> bool:
-    files = os.listdir(config.photo_directory)
-
-    if len(files) == 0:
-        return False
-
-    random_file = os.path.join( config.photo_directory, random.choice(files))
-
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, random_file, 0)
-
-    return True
-
-
-async def _update_wallpaper():
-    if random.randint(0, 10) <= 4:  # 0..4
-        await _process_unsplash()
-    else:
-        _update_with_existing_file()
-
-
 async def main():
-
     while True:
-
         await _update_wallpaper()
 
         await asyncio.sleep(config.update_delay * random.uniform(0.9, 1.1))
